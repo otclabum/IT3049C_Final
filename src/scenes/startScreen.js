@@ -18,8 +18,7 @@ export default class startScreen extends Phaser.Scene
     create()
     {
       this.add.sprite(320, 200, 'codeheadboxxart').setScale(.6);
-      //this.add.text(50,50, `PLAY GAME!`);
-      var text = this.add.text(400,330, 'PLAY GAME!');
+      var text = this.add.text(320,310, 'PLAY GAME!', {fontSize: `25px`, fill: `red`, fontStyle: `bold`});
       text.setInteractive({ useHandCursor: true });
       text.on('pointerdown', () => this.clickButton());
     }
