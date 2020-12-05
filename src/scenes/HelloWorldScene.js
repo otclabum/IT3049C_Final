@@ -9,7 +9,6 @@ export default class HelloWorldScene extends Phaser.Scene
 
 	preload()
     {
-        this.load.image('background', '../images/background.png');
         this.load.image("background", "images/background.png");
         this.load.image("python_projectile","images/projectiles/python_projectile.png");
         this.load.image("yahya_projectile","images/projectiles/yahya_projectile.png");
