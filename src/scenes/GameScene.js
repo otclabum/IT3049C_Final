@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 
 const GROUND_KEY = 'ground'
 const PLAYER_KEY = 'yahya'
+const PYTHON_KEY = 'python'
 
 export default class GameScene extends Phaser.Scene
 {
@@ -10,18 +11,24 @@ export default class GameScene extends Phaser.Scene
 		super('game-scene')
 
 		this.player = undefined
+		this.python = undefined
 		this.cursors = undefined
+
 
 	}
 
 	preload()
 	{
 		this.load.image('forest', 'images/background.png');
-		this.load.image(GROUND_KEY, 'images/platform.png');
+		// this.load.image(GROUND_KEY, 'images/platform.png');
 
-		this.load.spritesheet(PLAYER_KEY, 'images/yahya/idle/yadyaidle.png', 
-			{ frameWidth: 32, frameHeight: 48 }
+		this.load.spritesheet(PLAYER_KEY, 'images/yahya/walk/yahyawalk.png', 
+			{ frameWidth: 440, frameHeight: 493 }
 		)
+		this.load.spritesheet(PYTHON_KEY, 'images/python/idle/pythonidle.png',
+			{ frameHeight: 500, frameWidth: 350 }
+		)
+		
 	}
 
 	create()
@@ -29,7 +36,7 @@ export default class GameScene extends Phaser.Scene
 		this.add.sprite(320, 200, 'forest');
 		const platforms = this.createPlatforms()
 		this.player = this.createPlayer()
-
+		this.python = this.createPython()
 		this.physics.add.collider(this.player, platforms)
 
 		this.cursors = this.input.keyboard.createCursorKeys()
@@ -77,6 +84,7 @@ export default class GameScene extends Phaser.Scene
 		const player = this.physics.add.sprite(100, 450, PLAYER_KEY)
 		player.setBounce(0.2)
 		player.setCollideWorldBounds(true)
+		player.setScale(.2, .2)
 
 		this.anims.create({
 			key: 'left',
@@ -98,5 +106,15 @@ export default class GameScene extends Phaser.Scene
 			repeat: -1
 		})
 		return player
+	}
+
+	createPython()
+	{
+		const python = this.physics.add.sprite(550, 450, PYTHON_KEY)
+		python.setBounce(0.2)
+		python.setCollideWorldBounds(true)
+		python.setScale(.5, .5)
+
+	return python
 	}
 }
